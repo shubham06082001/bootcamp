@@ -8,7 +8,7 @@
   align-items: center !important;
 }
 
-.heading{
+.heading {
   font-weight: 800;
   color: black;
   text-transform: capitalize !important;
@@ -35,13 +35,24 @@
   padding: 15px;
 }
 
+#skills {
+  padding-top: 20px;
+  background-color: cornsilk;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100%;
+  padding-bottom: 50px;
+  border-radius: 4%;
+  padding-bottom: 20px;
+}
+
 #project {
   padding: 15px;
   background-color: crimson;
   color: white;
 }
 
-.card-img-top{
+.card-img-top {
   height: 400px;
   width: 100%;
 }
