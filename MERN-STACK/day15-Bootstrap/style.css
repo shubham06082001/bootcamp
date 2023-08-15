@@ -16,15 +16,19 @@
 }
 
 #home {
-  margin-bottom: 50px;
+  padding-bottom: 50px;
+  padding-top: 50px;
 }
 
 .carousel-item {
-  background-color: cornflowerblue;
-  justify-content: center;
-  align-items: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  justify-content: center !important;
+  align-items: center !important;
 }
-
+.carousel-image {
+  width: 750px !important;
+  height: 500px !important;
+}
 .d-block {
   justify-content: center !important;
   align-items: center !important;
@@ -65,4 +69,8 @@
   width: 100%;
   padding-bottom: 50px;
   border-radius: 4%;
+}
+#form-group {
+  margin: 50px;
+  padding: 25px;
 }
