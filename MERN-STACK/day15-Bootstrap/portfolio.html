@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shubham Kumar</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+
+    <link href="./style.css" rel="stylesheet" />
+    <!-- Custom CSS -->
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+      }
+      .header {
+        background-color: #333;
+        color: #fff;
+        padding: 1rem 0;
+        text-align: center;
+      }
+      .navbar {
+        background-color: #333;
+      }
+      .navbar-dark .navbar-nav .nav-link {
+        color: #fff;
+      }
+      .container {
+        padding: 2rem;
+      }
+      .project {
+        margin-bottom: 2rem;
+      }
+      .project img {
+        max-width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <img src="./farmer.png" id="brand" />
+      <a class="navbar-brand" href="#">SHUBHAM KUMAR</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link active" href="#home">HOME</a>
+          <a class="nav-item nav-link" href="#about">ABOUT</a>
+          <a class="nav-item nav-link" href="#skills">SKILLS</a>
+          <a class="nav-item nav-link" href="#projects">PROJECTS</a>
+          <a class="nav-item nav-link" href="#contact">CONTACT ME</a>
+        </div>
+      </div>
+    </nav>
+    <!-- CAROUSEL -->
+    <div class="position-relative m-4" style="margin: 5px; padding: 5px">
+      <div
+        class="progress"
+        role="progressbar"
+        aria-label="Progress"
+        aria-valuenow="50"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        style="height: 1px"
+      >
+        <div class="progress-bar" style="width: 100%"></div>
+      </div>
+      <button
+        type="button"
+        class="position-absolute top-0 start-0 translate-middle btn btn-sm btn-outline-success"
+        style="height: 2rem; margin: 5px"
+      >
+        HOME
+      </button>
+      <button
+        type="button"
+        class="position-absolute top-0 start-50 translate-middle btn btn-sm btn-primary"
+        style="height: 2rem"
+      >
+        ABOUT
+      </button>
+      <button
+        type="button"
+        class="position-absolute top-0 start-100 translate-middle btn btn-sm btn-secondary"
+        style="width: 2rem; height: 2rem"
+      >
+        SKILLS
+      </button>
+      <button
+        type="button"
+        class="position-absolute top-0 start-100 translate-middle btn btn-sm btn-secondary"
+        style="width: 2rem; height: 2rem"
+      >
+        PROJECTS
+      </button>
+      <button
+        type="button"
+        class="position-absolute top-0 start-100 translate-middle btn btn-sm btn-secondary"
+        style="width: 2rem; height: 2rem"
+      >
+        CONTACT ME
+      </button>
+    </div>
+    <div class="home" id="home">
+      <div
+        id="carouselExampleControls"
+        class="carousel slide"
+        data-bs-ride="carousel"
+      >
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img
+              src="https://img.freepik.com/premium-vector/mobile-marketing-concept-e-commerce-internet-advertising-promotion-vector-illustration-flat_186332-880.jpg?w=2000"
+              class="d-block w-50 h-50"
+              alt="home1 image"
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="https://img.freepik.com/premium-vector/man-browsing-social-networks-making-post-sharing-news-messages-posting-social-media-netwo_125133-2060.jpg?w=2000"
+              class="d-block w-50 h-50"
+              alt="home2 image"
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="https://img.freepik.com/free-vector/contact-us-concept-landing-page_52683-12860.jpg?w=2000"
+              class="d-block w-50 h-50"
+              alt="home3 image"
+            />
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleControls"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleControls"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="bg-info" id="about">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <img
+              src="./farmer.png"
+              alt="Profile Image"
+              class="img-fluid rounded-circle mb-3"
+            />
+          </div>
+          <div class="col-lg-6">
+            <h2
+              class="display-4 bg-info-subtle text-center text-decoration-underline fw-bold font-monospace"
+            >
+              About Me
+            </h2>
+            <p class="lead fw-medium font-italic fs-5">
+              Hi there! I'm John Doe, a passionate web developer with a keen
+              interest in creating elegant and user-friendly websites. I
+              specialize in front-end development, creating responsive and
+              interactive web experiences.
+            </p>
+            <p class="fw-medium font-italic fs-5">
+              I have a strong foundation in HTML, CSS, and JavaScript, and I'm
+              constantly exploring new technologies to enhance my skills. I
+              enjoy turning complex problems into simple and beautiful user
+              interfaces.
+            </p>
+            <p class="fw-medium font-italic fs-5">
+              When I'm not coding, you can find me exploring the latest web
+              design trends, playing my guitar, or enjoying a good book.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center" id="project">
+      <section class="py-5">
+        <div class="container">
+          <div class="text-center">
+            <h2
+              class="mb-4 bg-danger-subtle font-monospace fs-1 fw-bold text-center text-decoration-underline heading"
+            >
+              Projects
+            </h2>
+            <h4>Here are some of the projects I've worked on.</h4>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="card mb-4">
+                <img
+                  src="https://res.cloudinary.com/practicaldev/image/fetch/s--4qRPWAT6--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://assets.materialup.com/uploads/d4fc503f-84c6-48a5-8b99-e455803e975a/preview.jpg"
+                  class="card-img-top"
+                  alt="Project 1"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">Project 1</h5>
+                  <p class="card-text">
+                    A brief description of project 1 goes here.
+                  </p>
+                  <a href="#" class="btn btn-primary">View Details</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card mb-4">
+                <img
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGwDHphpKmnAdcnQKF7rRRfaSTxRs1VOmMNA&usqp=CAU"
+                  class="card-img-top"
+                  alt="Project 2"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">Project 2</h5>
+                  <p class="card-text">
+                    A brief description of project 2 goes here.
+                  </p>
+                  <a href="#" class="btn btn-primary">View Details</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card mb-4">
+                <img
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTKH2EuSPXoe0FR3JAhZCHR92DRh3kTQnexA&usqp=CAU"
+                  class="card-img-top"
+                  alt="Project 3"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">Project 3</h5>
+                  <p class="card-text">
+                    A brief description of project 3 goes here.
+                  </p>
+                  <a href="#" class="btn btn-primary">View Details</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="contact" id="contact">
+      <h2
+        class="mb-4 bg-danger-subtle font-monospace fs-1 fw-bold text-center text-decoration-underline heading"
+      >
+        Contact Me
+      </h2>
+      <form>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputEmail4">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              id="inputEmail4"
+              placeholder="Email"
+            />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputPassword4">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="inputPassword4"
+              placeholder="Password"
+            />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputAddress">Address</label>
+          <input
+            type="text"
+            class="form-control"
+            id="inputAddress"
+            placeholder="1234 Main St"
+          />
+        </div>
+        <div class="form-group">
+          <label for="inputAddress2">Address 2</label>
+          <input
+            type="text"
+            class="form-control"
+            id="inputAddress2"
+            placeholder="Apartment, studio, or floor"
+          />
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputCity">City</label>
+            <input type="text" class="form-control" id="inputCity" />
+          </div>
+          <div class="form-group col-md-4">
+            <label for="inputState">State</label>
+            <select id="inputState" class="form-control">
+              <option selected>Choose...</option>
+              <option>...</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2">
+            <label for="inputZip">Zip</label>
+            <input type="text" class="form-control" id="inputZip" />
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="gridCheck" />
+            <label class="form-check-label" for="gridCheck">
+              Check me out
+            </label>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Sign in</button>
+      </form>
+    </div>
+
+    <footer class="bg-dark text-light py-4">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <h5>About Us</h5>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+              auctor justo eget turpis euismod, sed lacinia odio vestibulum.
+            </p>
+          </div>
+          <div class="col-md-3">
+            <h5>Quick Links</h5>
+            <ul class="list-unstyled">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Services</a></li>
+              <li><a href="#">Portfolio</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <h5>Contact Us</h5>
+            <address>
+              <p>123 Street, City</p>
+              <p>Email: info@example.com</p>
+              <p>Phone: +123 456 7890</p>
+            </address>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <p>&copy; 2023 Your Company. All rights reserved.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS (optional, if you plan to use Bootstrap's JS features) -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

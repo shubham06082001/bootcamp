@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>javascript</title>
+    <!-- bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <style>
+      #image {
+        width: 200px;
+        height: 200px;
+        margin: 50px;
+        padding: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <p id="p1">Lorem, ipsum dolor.</p>
+    <p id="p2">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
+      voluptatum.
+    </p>
+    <img src="./coffee.png" id="image" alt="coffee" />
+    <br />
+    <button onclick="changeContent()" class="btn btn-primary">
+      Change Content
+    </button>
+    <button onclick="changeAttributeValue()" class="btn btn-secondary">
+      Change Content
+    </button>
+    <button onclick="changeCSSStyle()" class="btn btn-success">
+      Change CSS Style
+    </button>
+    <script>
+      function changeContent() {
+        let img = document.getElementById("image")
+        console.log(img.src)
+        console.warn(document.getElementById("image").src)
+        if (img.src.includes("coffee.png")) {
+          img.src = "./farmer.png"
+        } else if (img.src.includes("farmer.png")) {
+          img.src = "./coffee.png"
+        }
+      }
+      function changeAttributeValue() {
+        document.getElementById("image").alt = "farmer"
+      }
+
+      var initial = true
+      function changeCSSStyle() {
+        initial = !initial
+        if (initial) {
+          document.getElementById("p2").style.all = unset
+          console.log(document.getElementById("p2").style)
+          document.getElementById("p1").style.color = "yellow"
+          document.getElementById("p1").style.fontSize = "26px"
+          document.getElementById("p1").style.fontWeight = "italic"
+          document.getElementById("p1").style.fontFamily = "sans-serif"
+          return
+        } else {
+          document.getElementById("p1").style.all = unset
+          document.getElementById("p2").style.color = "red"
+          document.getElementById("p2").style.fontSize = "30px"
+          document.getElementById("p2").style.fontWeight = "bold"
+          document.getElementById("p2").style.fontFamily = "Arial"
+        }
+      }
+    </script>
+  </body>
+</html>

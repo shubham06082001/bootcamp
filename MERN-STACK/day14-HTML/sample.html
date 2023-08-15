@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<!-- <html lang="ar"> -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- BOOTSTRAP -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link href="./style.css" rel="stylesheet" />
+    <style>
+      p {
+        color: red;
+        background-color: blanchedalmond;
+      }
+      /* ATTRIBUTE SELECTOR */
+      [style] {
+        background-color: yellow;
+        text-decoration: underline;
+      }
+      [href] {
+        color: blueviolet;
+        border: 1px solid red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td colspan="2">Larry the Bird</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <a href="https://google.com" target="_blank">
+      <button
+        style="border: 2px solid gray; color: crimson"
+        class="btn btn-primary"
+      >
+        GOOGLE BLANK
+      </button>
+    </a>
+    <a href="https://google.com" target="_top">
+      <button class="btn btn-warning">GOOGLE TOP</button>
+    </a>
+    <a href="https://google.com" target="_parent">
+      <button class="btn btn-success">GOOGLE PARENT</button>
+    </a>
+    <a href="mailto:safan@gmail.com"> MAIL US</a>
+    <a href="tel:9898989898">CALL US</a>
+    <h1>Virat Kohli</h1>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore voluptatem
+      consequuntur possimus error ratione sequi sunt. Ipsa labore in corporis,
+      atque, velit veritatis recusandae ut cupiditate amet maxime nam fugit
+      omnis placeat nostrum vero? Aut eos saepe, eius sequi consectetur
+      excepturi magnam. Eveniet, possimus ut ex enim amet commodi quibusdam?
+    </p>
+    <pre>
+hello
+
+hi
+<h1>
+kaifa
+</h1>
+
+<p>how</p>
+jkpoi
+
+
+Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veniam, nostrum!
+
+
+
+Lorem, ipsum.
+    </pre>
+    <div class="container">
+      <form>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input
+            type="email"
+            class="form-control"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+            placeholder="Enter email"
+          />
+          <small id="emailHelp" class="form-text text-muted"
+            >We'll never share your email with anyone else.</small
+          >
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="exampleInputPassword1"
+            placeholder="Password"
+          />
+        </div>
+        <div class="form-group form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+          <label class="form-check-label" for="exampleCheck1"
+            >Check me out</label
+          >
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </body>
+</html>
