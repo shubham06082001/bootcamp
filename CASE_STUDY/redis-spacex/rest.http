@@ -1,3 +1,5 @@
 # GET ALL ROCKETS
 
 GET http://localhost:3000/rockets
+
+GET http://localhost:3000/rocket/5e9d0d95eda69955f709d1eb
