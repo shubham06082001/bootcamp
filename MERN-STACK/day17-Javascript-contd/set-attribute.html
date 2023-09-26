@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Attribute</title>
+  </head>
+  <body>
+    <a href="https://www.google.com" id="google">Google</a>
+    <button onclick="seturl()">Set URL</button>
+    <button onclick="removeurl()">Remove URL</button>
+    <button onclick="printurl()">GET URL</button>
+
+    <script>
+      function seturl() {
+        let element = document.getElementById("google")
+        element.setAttribute("href", "https://www.facebook.com")
+        element.setAttribute("target", "_blank")
+      }
+
+      function printurl() {
+        let element = document.getElementById("google")
+        alert(
+          element.getAttribute("href") +
+            "and target is: " +
+            element.getAttribute("target")
+        )
+      }
+      function removeurl() {
+        let element = document.getElementById("google")
+        element.removeAttribute("href")
+        element.removeAttribute("target")
+      }
+    </script>
+  </body>
+</html>

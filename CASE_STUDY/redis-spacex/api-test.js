@@ -1,9 +1,11 @@
 const { createClient } = require("redis")
+const responseTime = require("response-time")
 const express = require("express")
 const fetch = require("node-fetch")
 globalThis.fetch = fetch
 
 const app = express()
+app.use(responseTime())
 
 const client = createClient()
 
@@ -16,29 +18,53 @@ async function connection() {
 
 connection()
 
-async function getData() {
-  const url = "https://jsonplaceholder.typicode.com/posts/1"
+async function getPost(id = 1) {
+  const url = `https://jsonplaceholder.typicode.com/posts/${id}`
   const response = await fetch(url)
   const jsonResponse = response.json()
   return jsonResponse
 }
 
-app.get("/", async (req, res) => {
-  const reply = await client.get("posts")
+async function getAllPosts() {
+  const url = "https://jsonplaceholder.typicode.com/posts/"
+  const response = await fetch(url)
+  const jsonResponse = response.json()
+  return jsonResponse
+}
+
+async function getCachedData(key) {
+  const reply = await client.get(key)
   if (reply) {
     const cachedData = JSON.parse(reply)
-    console.log("CACHED DATA:", cachedData)
+    console.log("RETURNING CACHED DATA..")
+    return cachedData
+  }
+}
+
+async function setCachedData(key, value, exp) {
+  const saveResult = await client.set(key, JSON.stringify(value), {
+    EX: exp,
+  })
+  console.log("NEW DATA CACHED!!")
+}
+
+app.get("/", async (req, res) => {
+  const cachedData = await getCachedData("post")
+  if (cachedData) {
     return res.send(cachedData)
   }
+  const data = await getPost(1)
+  const setCache = await setCachedData("post", JSON.stringify(data), 100)
+  return res.send(data)
+})
 
-  const data = await getData()
-  console.log(data)
-
-  const saveResult = await client.set("posts", JSON.stringify(data), {
-    EX: 100,
-  })
-  console.log("NEW DATA CACHED!!" + saveResult)
-
+app.get("/posts", async (req, res) => {
+  const cachedData = await getCachedData("posts")
+  if (cachedData) {
+    return res.send(cachedData)
+  }
+  const data = await getAllPosts()
+  const setCache = await setCachedData("posts", JSON.stringify(data), 100)
   return res.send(data)
 })
 

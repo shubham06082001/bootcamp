@@ -1,0 +1,58 @@
+stages:
+  - build
+  - test
+  - deploy
+
+variables:
+  SSH_PRIVATE_KEY: MIIEowIBAAKCAQEAuTqGN/ltFWfjlEOGuGOukZPetNVqlOczONIwlTUPMgzG47I0T8zod0L++dWbOjqAQFu6146NmeLci5U6u5rqmrpHGU6j5pxCkcI7s8GqwiG2qetTDb3qT9jE7z2Ne2RhOLMz5QmDaaho90TNGNdeBQUSOsnAU3v6uFS8ORcAbbH0lUjFsFRdEouxCU0xmU0xmsD28hS7n0nIKCKrKPa1izFiC66TCpRrKTh9gMO5Z6r1Lh7q2aXwOq+tyqHRz5H3ywVaqWlcBaGV4DA/Cbp6mPgShZteLm9z8j6suV503vNImg/yXPqBFb1Xy/sAnll2VJV/lbYfYGMRfmWpM4hywIDAQABAoIBABJkyWdNkZOKmYLjocE1xOQX9wmmF8tpmiCOXtyyRCwIMMfzrlYuVvdg3gbV1jNCfdpTthwRY157sdFI4I3j1zU5IKT9OG+COq92lmCAlnztf9a+x+rFmppn/QK8xQZd7RFxJD2IzK6WWX7YOUv+gg2mkM0c7OaoQqbkcUQSqUBSJtK4fzDTKg2AhS25dRvrXqOUrBU94PwKnJ7bKWex+kmkd5ApXOIlA+qxSfha+Bym7dbYccnzBq7L/T1j3g6UbO8bo8oGBZvz9w4mQidqpiS9ZUoAS/biiw1ltxfq+E7aY/TJiVaYUO0AUT3DzOw3satf/mVsEz+vbZs/
+swyzBYECgYEA8X/9KeXNpnj+7U2ASoaxB/Mhdt/tAFtu5CYb/Ofd6VJOcQOFI/j3
+5vpSAfD39D0KxxXz7jfCTAmcVKZ9QJcS6O3DGK00C5V2oYEkmV9MJDDHeCkOul5t
+C49A7+IFPhuB45VvHmm2DLGQQB9YG2rh/534ErY4pQDzmPPJczA4wFsCgYEAxFmb
+tr1ePAb+XbJ9JxZNpJskbjnuRhGTqftQJc8GYHVIzh77NUM6/Vp6V7HFYcsS7h22
+1q4kWX2c7Y0X0f/YeCLzfnvqxVxfQ6IR4EUGS6ZGkvNWc7mXW99DGx2UOhLQvBxB
+bOTymAow/CFG863o/LCqmKoL7DgBE3ivp5v+31ECgYA2+6XfCSQWN8wKqS+BSEM8
+BR3kW70w7KBFr2uF3CCJA6U6U8vXUdLXMrzDFmLNp6wxgY0E+orxFusR1soDj6HN
+iHx3vM9xp7jXsnhrtue2AakYcXiZ8++txxLIytPYvRiIgThIW1cIctDd2IUN0Prd
+YNDfKb+hyaKseyytXhg9qwKBgFzWbZyivwqs19pfiXNQxVdeD4SamYHBz8rgS84E
+q+QxsEHdPjO53Qtrm0sZf9U0WngBzrCE2CUEEo3zV17wlF6BUBXu61tzyItG9yLO
+ICLmtJnIuoivKNTEpIsOmkY3HUDEL18YhWfD8dNUvKJ9CRtpQNA8HrUK6d9WAd/D
+D2hxAoGBAKsZHPKCZNfWLttq9zqICsV9F/Km/C/mCbKyLRPOq2Kg0IAHypD+xcZJ
+T6kSuPwjE60n6zdcSqIO8ei097X8V1VAdUzE8SWzx5bx6o/6JURtx0ZzlcPIsz62
+uaKh7KiTvWjwdz+tte7PNziXNGhBibBKBQ+xrZdzZcq3RYSRs392 
+  SSH_HOST: 3.87.101.190
+  SSH_PORT: 22
+  SSH_USER: ubuntu
+
+build:
+  stage: build
+  image: node:16.3.0-alpine
+  script:
+    - npm install
+  artifacts:
+    paths:
+      - node_modules/ 
+
+test:
+  stage: test
+  image: sonarsource/sonar-scanner-cli:latest 
+  script:
+    - sonar-scanner 
+  only:
+    - master 
+
+deploy:
+  stage: deploy
+  script:
+    - apt-get update -qy
+    - apt-get install -y git  
+    - apt-get install -y openssh-client  
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa  
+    - chmod 600 ~/.ssh/id_rsa
+    - ssh-keyscan -p $SSH_PORT $SSH_HOST >> ~/.ssh/known_hosts  
+    - git clone https://gitlab.com/shubham06082001/legacy-database.git
+    - cd legacy-database
+    - npm install  
+    - npm run build 
+    - scp -P $SSH_PORT -r . $SSH_USER@$SSH_HOST:/legacy-database  # Deploy code to EC2
+  only:
+    - master 

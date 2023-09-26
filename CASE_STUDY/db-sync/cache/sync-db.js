@@ -1,64 +1,35 @@
-const MongoClient = require("mongodb").MongoClient
-const redis = require("redis")
-const async = require("async") // For managing asynchronous operations
+const UserModel = require("../schema/User")
+const { redisClient } = require("../redis-connection")
 
-const mongoUrl = "mongodb://localhost:27017/mydb"
-const redisClient = redis.createClient()
+// Function to fetch user data from MongoDB
+async function fetchUserDataFromMongo() {
+  const userData = await UserModel.find()
+  console.log(userData)
+  return userData
+}
 
-MongoClient.connect(mongoUrl, (mongoErr, mongoClient) => {
-  if (mongoErr) throw mongoErr
-  const mongoDb = mongoClient.db()
-
-  // Initialize a queue for processing synchronization tasks
-  const syncQueue = async.queue((task, callback) => {
-    processSyncTask(task, callback)
-  }, 1) // Limit to 1 task at a time to ensure proper synchronization
-
-  const userCollection = mongoDb.collection("users")
-  const changeStream = userCollection.watch()
-
-  changeStream.on("change", (change) => {
-    if (change.operationType === "insert") {
-      const user = change.fullDocument
-      enqueueSyncTask(user)
-    }
+// Function to write user data to Redis
+async function writeUserDataToRedis(redisClient, userData) {
+  let result = await redisClient.set("users", JSON.stringify(userData), {
+    // SET EXPIRY FOR REDIS CACHE
+    EX: 100,
   })
+  console.log("Data synced with Redis : ", result)
+}
 
-  // Handle errors
-  changeStream.on("error", (err) => {
-    console.error("Change Stream Error:", err)
-  })
+// Main synchronization function
+async function synchronizeUserData() {
+  const userDataFromMongo = await fetchUserDataFromMongo()
+  await writeUserDataToRedis(redisClient, userDataFromMongo)
+  console.log("User data synchronized from MongoDB to Redis.")
+}
 
-  // Redis client error handling
-  redisClient.on("error", (redisErr) => {
-    console.error("Redis Error:", redisErr)
-  })
+// // Schedule synchronization every minute
+// const syncInterval = 60 * 1000
+// // 1 minute in milliseconds
 
-  // Helper function to enqueue a sync task
-  function enqueueSyncTask(user) {
-    syncQueue.push(user, (err) => {
-      if (err) console.error("Sync Task Error:", err)
-    })
-  }
+// setInterval(async () => {
+//   await synchronizeUserData()
+// }, syncInterval)
 
-  // Function to process a sync task
-  function processSyncTask(user, callback) {
-    const userId = user._id
-
-    // Simulate some processing time
-    setTimeout(() => {
-      // Fetch user data from MongoDB
-      userCollection.findOne({ _id: userId }, (err, fetchedUser) => {
-        if (err) return callback(err)
-
-        // Update user data in Redis
-        redisClient.hmset(`user:${userId}`, fetchedUser, (redisErr) => {
-          if (redisErr) return callback(redisErr)
-
-          console.log(`User ${userId} synchronized successfully.`)
-          callback()
-        })
-      })
-    }, 1000) // Simulated delay of 1 second
-  }
-})
+module.exports = { synchronizeUserData }

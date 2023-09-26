@@ -1,105 +1,67 @@
-const jwt = require(`jsonwebtoken`)
-const bcrypt = require(`bcrypt`)
+const AWS = require("aws-sdk")
 const express = require(`express`)
 const router = express.Router()
 
+const { USER_NOT_FOUND, INTERNAL_SERVER_ERROR } = require("../constants")
 const UserModel = require("../schema/User")
 
-//register a user
+const s3 = new AWS.S3()
+const sqs = new AWS.SQS()
 
-router.post(`/register`, async (req, res) => {
-  const { name, email, password, role } = req.body
-  const userArrayLength = 100
-  const id = userArrayLength + 1
+const s3BucketName = "legacy-bucket-12092023"
 
-  try {
-    const hashedPassword = await bcrypt.hash(password, 10)
+const sqsQueueUrl =
+  "https://sqs.us-east-1.amazonaws.com/581562052871/legacy-queue"
 
-    // Create a new user instance
-    const newUser = new UserModel({
-      id,
-      name,
-      email,
-      password: hashedPassword,
-      role,
-    })
-
-    // Save the user to the database
-    await newUser.save()
-
-    res.status(201).json({ message: `user added` })
-  } catch (err) {
-    res.status(500).json(`internal server error: ${err.message}`)
-  }
-})
+// GET ALL USERS
 
 router.get(`/users`, async (req, res) => {
-  const getAllUsers = await UserModel.find()
-  res.send(getAllUsers)
-})
-
-//login
-
-router.post(`/login`, async (req, res) => {
-  const { email, password } = req.body
-
   try {
-    // Fetch the user data from MongoDB
-    const user = await UserModel.findOne({ email: email })
+    const getAllUsers = await UserModel.find()
+    const data = getAllUsers
 
+    // Store data in S3
+    const s3Params = {
+      Bucket: s3BucketName,
+      Key: "users.json",
+      Body: JSON.stringify(data),
+    }
+
+    await s3.putObject(s3Params).promise()
+
+    // Send data to SQS
+
+    const sqsParams = {
+      MessageBody: JSON.stringify(data),
+      QueueUrl: sqsQueueUrl,
+    }
+
+    await sqs.sendMessage(sqsParams).promise()
+
+    res.send(getAllUsers)
+  } catch (error) {
+    console.error("Error:", error)
+    res.status(500).send("Error: " + error.message)
+  }
+})
+
+// GET USER BY ID
+
+router.get("/users/:userId", async (req, res) => {
+  try {
+    const userId = req.params.userId
+    const user = await UserModel.findById(userId)
     if (!user) {
-      return res
-        .status(401)
-        .json({ message: `invalid user, authentication failed` })
+      return res.status(404).json({
+        message: USER_NOT_FOUND,
+      })
     }
-
-    const isPasswordValid = await bcrypt.compare(password, user.password)
-
-    if (!isPasswordValid) {
-      return res.status(401).json({ message: `authentication failed` })
-    }
-
-    const token = jwt.sign({ id: user.id, role: user.role }, `mysecretkey`)
-    res.json({ token })
-  } catch (err) {
-    res.status(500).json({ message: `internal server error: ${err.message}` })
+    res.status(200).json(user)
+  } catch (error) {
+    res.status(500).json({
+      error: INTERNAL_SERVER_ERROR,
+    })
   }
-})
-
-//jwt authentication
-
-function roleBasedAuthentication(role) {
-  return (req, res, next) => {
-    const authHeader = req.headers["authorization"]
-
-    const token = authHeader && authHeader.split(" ")[1]
-
-    if (!token) {
-      return res
-        .status(401)
-        .json({ message: `unauthorized, token is not present` })
-    }
-
-    try {
-      const decode = jwt.verify(token, "mysecretkey")
-      if (decode.role !== role) {
-        return res.status(403).json({ message: "access denied!" })
-      }
-      req.user = decode
-      next()
-    } catch (err) {
-      res.status(400).json({ message: "not a valid token" })
-    }
-  }
-}
-router.get("/user", roleBasedAuthentication("user"), (req, res) => {
-  res.json({ message: "welcome to user login" })
-})
-
-router.get("/admin", roleBasedAuthentication("admin"), async (req, res) => {
-  const getAllUsers = await UserModel.find()
-  res.json(getAllUsers)
-  res.json({ message: "welcome to admin login" })
 })
 
 module.exports = router

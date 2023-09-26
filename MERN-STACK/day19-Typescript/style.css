@@ -1,0 +1,121 @@
+body {
+  background-color: black;
+}
+
+.container {
+  width: 100vw !important;
+  height: 75% !important;
+  max-width: 100% !important;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+  /* background-image: url("https://i.pinimg.com/1200x/db/34/d4/db34d40b271fb59477621550bf73ea0b.jpg"); */
+  background-image: url("https://t3.ftcdn.net/jpg/04/78/35/22/360_F_478352239_ckoEVDJZX54tvAzxpL3F7UOr2qoXx0wV.jpg");
+  background-size: contain;
+}
+
+.app {
+  background: #fff;
+  width: 90%;
+  max-width: 600px;
+  margin: 100px;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.logo {
+  border-radius: 30px;
+}
+
+#question {
+  font-size: 20px;
+  font-weight: 500;
+  border-bottom: 1px solid #fff;
+  padding-bottom: 30px;
+}
+
+/* .quiz {
+  padding: 20px 12px;
+} */
+
+.button {
+  background-color: #fff;
+  color: #222;
+  width: 100%;
+  border: 1px solid #222;
+  padding: 10px;
+  margin: 10px;
+  text-align: left;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.button:hover:not([disabled]) {
+  background-color: cornflowerblue;
+  color: #fff;
+}
+
+.button:disabled {
+  /* opacity: 0.5; */
+  cursor: no-drop;
+}
+
+.score-box {
+  border: 2px solid #fff;
+  border-radius: 5px;
+  color: #000;
+  width: 300px !important;
+  max-width: 200px;
+  text-align: center;
+  font-weight: bolder;
+  margin: 0 auto;
+  background-color: aquamarine;
+}
+
+#next-button {
+  background-color: coral;
+  color: #fff;
+  width: 200px;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 900;
+  letter-spacing: 1.2px;
+  border: 1px solid #222;
+  padding: 10px;
+  margin: 10px;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#reset {
+  float: right !important;
+}
+#timer {
+  color: #000;
+  background-color: aquamarine;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #fff;
+  font-weight: bold;
+  width: 120px;
+  text-align: center;
+  margin: 0px auto;
+}
+
+.correct-highlight {
+  background-color: green;
+  color: white;
+}
+
+.selected-highlight {
+  background-color: deeppink;
+  color: white;
+}
+
+.button.selected,
+.button.correct {
+  pointer-events: none;
+  cursor: default;
+}

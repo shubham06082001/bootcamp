@@ -1,22 +1,32 @@
 const express = require(`express`)
 const bodyparser = require(`body-parser`)
-const redisConnection = require("./redis-connection")
-const responseTime = require("response-time")
-const connectDB = require("./mongodb-connection")
-const Auth = require("./route/Auth")
+const Address = require("./route/Address")
+const serverless = require("serverless-http")
 
+const connectDB = require("./mongodb-connection")
+
+const Auth = require("./route/Auth")
 const app = express()
 
-app.use(responseTime())
 app.use(bodyparser.json())
 
-redisConnection()
 connectDB()
 
 app.use("/", Auth)
+app.use("/", Address)
 
-PORT = 3000
-
-app.listen(PORT, () => {
-  console.log(`Server started with port ${PORT}`)
+// DUMMY ROUTE TO TRACK RESPONSE TIME
+app.get("/hello", (req, res) => {
+  let responseTimeHeader = res.get("X-Response-Time")
+  console.log(responseTimeHeader)
+  res.json({
+    message: "Hello, World!",
+    responseTime: responseTimeHeader,
+  })
 })
+
+module.exports.handler = serverless(app)
+
+// app.listen(8000, () => {
+//   console.log('server started')
+// })

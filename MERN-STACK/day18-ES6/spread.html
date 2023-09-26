@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spread</title>
+  </head>
+  <body>
+    <script>
+      function even(...nums) {
+        let sum = 0
+        for (let i = 0; i < nums.length; i++) {
+          if (nums[i] % 2 == 0) {
+            console.log(nums[i])
+            sum += nums[i]
+          }
+        }
+        console.log("SUm is: " + sum)
+      }
+      even(2, 34, 56, 3, 21, 46)
+    </script>
+  </body>
+</html>

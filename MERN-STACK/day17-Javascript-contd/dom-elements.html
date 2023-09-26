@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1 id="hello">hello</h1>
+    <h1 class="heading">hello2</h1>
+    <h1 class="head">hello3</h1>
+    <script>
+      let newpara = document.createElement("p")
+      newpara.innerHTML = "This is a new paragraph"
+      document.body.appendChild(newpara)
+      console.log(10 + 5)
+
+      let hello = document.getElementById("hello")
+      console.log(hello)
+      console.log(hello.innerHTML)
+      hello.style.backgroundColor = "green"
+      hello.style.color = "white"
+      hello.style.fontSize = "50px"
+
+      let heading = document.getElementsByClassName("heading")
+      console.log(heading)
+      heading[0].style.backgroundColor = "red"
+      heading[0].style.color = "white"
+      heading.backgroundColor = "red"
+    </script>
+  </body>
+</html>

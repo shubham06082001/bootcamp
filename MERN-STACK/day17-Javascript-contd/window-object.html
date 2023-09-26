@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WINDOW</title>
+    <!-- Bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <button class="btn btn-warning" onclick="alertWindow()">ALERT</button>
+    <button class="btn btn-info" ondblclick="confirmWindow()">CONFIRM</button>
+    <button class="btn btn-danger" onclick="promptWindow()">PROMPT</button>
+    <button class="btn btn-danger" onclick="openWindow()">OPEN WINDOW</button>
+    <button class="btn btn-danger" onclick="closeWindow()">CLOSE WINDOW</button>
+    <button
+      class="btn btn-danger"
+      onclick="pop('https://www.google.com', 360, 720)"
+    >
+      POP WINDOW
+    </button>
+    <a
+      href="#"
+      target="_self"
+      onclick="pop('https://www.codespeedy.com', 360, 360)"
+      >POPUP WINDOW 2</a
+    >
+    <a href="#" onclick="pop2('https://www.wikipedia.org')">POPUP WINDOW 3</a>
+
+    <script>
+      function alertWindow() {
+        alert("Hello World")
+      }
+      function confirmWindow() {
+        let result = confirm("do u really want to delete this file")
+        if (result) {
+          alert("file deleted")
+        } else {
+          alert("file not deleted")
+        }
+      }
+
+      function promptWindow() {
+        let age = prompt("enter your age")
+        let name = prompt("enter your name")
+        alert("your name is " + name + " and your age is " + age)
+      }
+      function openWindow() {
+        let newTab = window.open("https://www.google.com")
+        setTimeout(() => {
+          newTab.close()
+        }, 1000)
+        self.close()
+      }
+
+      function closeWindow() {
+        window.close()
+      }
+      function pop(url, w, h) {
+        n = window.open(
+          url,
+          "_blank",
+          "toolbar=0,location=0,directories=0,status=1,menubar=0,titlebar=0,scrollbars=1,resizable=1,width=" +
+            w +
+            ",height=" +
+            h
+        )
+        setTimeout(() => {
+          n.close()
+        }, 3000)
+        // if (n == null) {
+        //   return true
+        // }
+        // return false
+      }
+      function pop2(url) {
+        var popupwin = window.open(
+          url,
+          "anyname",
+          "width=10,height=1,left=5,top=3"
+        )
+        setTimeout(function () {
+          popupwin.close()
+        }, 2000)
+      }
+    </script>
+  </body>
+</html>

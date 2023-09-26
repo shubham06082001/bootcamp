@@ -1,0 +1,100 @@
+body {
+  background-color: #f8f9fa;
+}
+
+.navbar {
+  background-color: #343a40;
+  color: white;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+}
+
+.card {
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.card:not(:hover) {
+  transform: scale(1);
+}
+
+.ribbon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #f39c12;
+  color: white;
+  padding: 5px 15px;
+  transform: rotate(-45deg);
+  font-size: 0.8rem;
+}
+
+.plan-highlight {
+  background-color: #007bff;
+  color: white;
+}
+
+.tick-mark {
+  margin-right: 5px;
+}
+
+body {
+  background-color: #f8f9fa;
+}
+
+.card {
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.card:not(:hover) {
+  transform: scale(1);
+}
+
+.card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  background-color: #007bff;
+  color: white;
+  font-size: 1.2rem;
+}
+
+.card-body {
+  background-color: white;
+  color: #333;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+.container {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  color: #333;
+}

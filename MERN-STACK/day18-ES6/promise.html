@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Promise</title>
+  </head>
+  <body>
+    <script>
+      let result = true
+      let promise = new Promise(function (resolve, reject) {
+        if (result) {
+          console.log("success")
+          resolve("Success")
+        } else {
+          console.log("error")
+          reject("Error")
+        }
+      })
+
+      let task = true
+
+      function prom(task) {
+        return new Promise(function (resolve, reject) {
+          if (task) {
+            resolve("Success")
+          } else {
+            reject("Error")
+          }
+        })
+      }
+
+      console.log(prom(task))
+      console.log(
+        prom(true)
+          .then(
+            function display(msg) {
+              console.log("successful msg: " + msg)
+              console.warn("resolved")
+            },
+            function hello() {
+              console.log("hello")
+            }
+          )
+          .catch((err) => {
+            console.log(err)
+          })
+      )
+    </script>
+  </body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>ROW value:</p>
+    <input name="row" placeholder="enter number of rows" id="row" value="5" />
+    <p>COL value:</p>
+    <input name="row" placeholder="enter number of rows" id="col" value="5" />
+    <button onclick="createTable(row, col)">Create Table</button>
+    <div id="table-container"></div>
+    <script>
+      function createTable(row, col) {
+        const container = document.getElementById("table-container")
+
+        var randomColor = Math.floor(Math.random() * 16777215).toString(16)
+
+        let table = document.createElement("table")
+
+        const thead = document.createElement("thead")
+        const tr = document.createElement("tr")
+        const th = document.createElement("th")
+        th.textContent = `Table ${row}X${col}`
+        tr.appendChild(th)
+        thead.appendChild(tr)
+        table.appendChild(thead)
+
+        table.setAttribute("border", "1")
+        const tbody = document.createElement("tbody")
+
+        let numRows = document.getElementById("row").value
+        let numCols = document.getElementById("col").value
+
+        for (let i = 0; i < numRows; i++) {
+          const row = document.createElement("tr")
+
+          for (let j = 0; j < numCols; j++) {
+            const cell = document.createElement("td")
+            cell.textContent = `Row ${i + 1}, Col ${j + 1}`
+            row.appendChild(cell)
+          }
+
+          tbody.appendChild(row)
+        }
+
+        table.appendChild(tbody)
+
+        container.appendChild(table)
+        table.style.backgroundColor = "#" + randomColor
+      }
+    </script>
+  </body>
+</html>

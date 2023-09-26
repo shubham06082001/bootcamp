@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TELECOM</title>
+    <!-- bootstrap css -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <style>
+      body {
+        background-image: linear-gradient(to bottom, #3498db, #1abc9c);
+        color: white;
+      }
+
+      #compareButton {
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      #compareButton:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+      }
+
+      #compareButton:hover {
+        background-color: #218838;
+      }
+
+      .selected {
+        border: 2px solid #28a745;
+      }
+
+      .navbar {
+        background-color: rgba(0, 0, 0, 0.6);
+        color: white;
+      }
+
+      .card {
+        transition: transform 0.3s, box-shadow 0.3s;
+        position: relative;
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      .card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+      }
+
+      .card:not(:hover) {
+        transform: scale(1);
+      }
+
+      .ribbon {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: #f39c12;
+        color: white;
+        padding: 5px 15px;
+        transform: rotate(-45deg);
+        font-size: 0.8rem;
+      }
+
+      .plan-highlight {
+        background-color: rgba(0, 0, 0, 0.6);
+        color: white;
+      }
+
+      .tick-mark {
+        margin-right: 5px;
+      }
+
+      .hero {
+        padding: 150px 0;
+        text-align: center;
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+      }
+
+      .section {
+        padding: 80px 0;
+        background-color: rgba(255, 255, 255, 0.05);
+      }
+
+      .section h2 {
+        font-size: 2.5rem;
+        margin-bottom: 30px;
+      }
+
+      .feature {
+        margin-bottom: 30px;
+      }
+
+      .feature-icon {
+        font-size: 2rem;
+        color: #3498db;
+      }
+
+      .feature-text {
+        font-size: 1.2rem;
+        margin-left: 15px;
+      }
+
+      .cta {
+        text-align: center;
+      }
+
+      .cta h2 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="#">TELECOM</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#pricing">Pricing</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#features">Features</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <section class="hero" id="#">
+      <div class="container">
+        <h1>Welcome to Telecom Service Comparison</h1>
+        <p>Your one-stop destination for comparing the best telecom plans.</p>
+      </div>
+    </section>
+    <div class="container mt-4 text-center" id="pricing">
+      <h1 class="m-5 text-decoration-underline font-monospace fw-bold">
+        Telecom Service Plans
+      </h1>
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <div class="ribbon">Popular</div>
+            <div class="card-header plan-highlight fs-4">Basic Plan</div>
+            <div class="card-body">
+              <h5 class="card-title plan-highlight fs-3">$30/month</h5>
+              <p class="card-text">
+                <span class="tick-mark">&#10003;</span> Data: 5GB
+              </p>
+              <p class="card-text">
+                <span class="tick-mark">&#10003;</span> Call Minutes: Unlimited
+              </p>
+              <p class="card-text">
+                <span class="tick-mark">&#10003;</span> Text Messages: 1000
+              </p>
+              <button class="btn btn-secondary btn-block mt-3">
+                Select Plan
+              </button>
+            </div>
+            <div class="card-footer">
+              <label class="form-check-label">
+                <input
+                  type="checkbox"
+                  class="form-check-input compare-checkbox"
+                />
+                Compare
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <div class="ribbon h">Featured</div>
+            <div class="card-header plan-highlight heading fs-4">
+              Premium Plan
+            </div>
+            <div class="card-body">
+              <h5 class="card-title plan-highlight fs-3">$40/month</h5>
+              <p class="card-text">
+                <span class="tick-mark">&#10003;</span> Data: 10GB
+              </p>
+              <p class="card-text">
+                <span class="tick-mark">&#10003;</span> Call Minutes: Unlimited
+              </p>
+              <p class="card-text">
+                <span class="tick-mark">&#10003;</span> Text Messages: 2000
+              </p>
+              <button class="btn btn-warning btn-block mt-3">
+                Select Plan
+              </button>
+            </div>
+            <div class="card-footer">
+              <label class="form-check-label">
+                <input
+                  type="checkbox"
+                  class="form-check-input compare-checkbox"
+                />
+                Compare
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <div class="ribbon">Recommended</div>
+            <div class="card-header plan-highlight fs-4">Enterprise Plan</div>
+            <div class="card-body fs-3">
+              <h5 class="card-title plan-highlight">$50/month</h5>
+              <p class="card-text">
+                <span class="tick-mark">&#10003;</span> Data: 15GB
+              </p>
+              <p class="card-text">
+                <span class="tick-mark">&#10003;</span> Call Minutes: Unlimited
+              </p>
+              <p class="card-text">
+                <span class="tick-mark">&#10003;</span> Text Messages: Unlimited
+              </p>
+              <button class="btn btn-info btn-block mt-3">Select Plan</button>
+            </div>
+            <div class="card-footer">
+              <label class="form-check-label">
+                <input
+                  type="checkbox"
+                  class="form-check-input compare-checkbox"
+                />
+                Compare
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <div class="ribbon">Popular</div>
+            <div class="card-header plan-highlight fs-4">Basic Plan</div>
+            <div class="card-body">
+              <h5 class="card-title plan-highlight fs-3">$30/month</h5>
+              <p class="card-text">
+                <span class="tick-mark">&#10003;</span> Data: 5GB
+              </p>
+              <p class="card-text">
+                <span class="tick-mark">&#10003;</span> Call Minutes: Unlimited
+              </p>
+              <p class="card-text">
+                <span class="tick-mark">&#10003;</span> Text Messages: 1000
+              </p>
+              <button class="btn btn-secondary btn-block mt-3">
+                Select Plan
+              </button>
+            </div>
+            <div class="card-footer">
+              <label class="form-check-label">
+                <input
+                  type="checkbox"
+                  class="form-check-input compare-checkbox"
+                />
+                Compare
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <div class="ribbon h">Featured</div>
+            <div class="card-header plan-highlight heading fs-4">
+              Premium Plan
+            </div>
+            <div class="card-body">
+              <h5 class="card-title plan-highlight fs-3">$40/month</h5>
+              <p class="card-text">
+                <span class="tick-mark">&#10003;</span> Data: 10GB
+              </p>
+              <p class="card-text">
+                <span class="tick-mark">&#10003;</span> Call Minutes: Unlimited
+              </p>
+              <p class="card-text">
+                <span class="tick-mark">&#10003;</span> Text Messages: 2000
+              </p>
+              <button class="btn btn-warning btn-block mt-3">
+                Select Plan
+              </button>
+            </div>
+            <div class="card-footer">
+              <label class="form-check-label">
+                <input
+                  type="checkbox"
+                  class="form-check-input compare-checkbox"
+                />
+                Compare
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <div class="ribbon">Recommended</div>
+            <div class="card-header plan-highlight fs-4">Enterprise Plan</div>
+            <div class="card-body fs-3">
+              <h5 class="card-title plan-highlight">$50/month</h5>
+              <p class="card-text">
+                <span class="tick-mark">&#10003;</span> Data: 15GB
+              </p>
+              <p class="card-text">
+                <span class="tick-mark">&#10003;</span> Call Minutes: Unlimited
+              </p>
+              <p class="card-text">
+                <span class="tick-mark">&#10003;</span> Text Messages: Unlimited
+              </p>
+              <button class="btn btn-info btn-block mt-3">Select Plan</button>
+            </div>
+            <div class="card-footer">
+              <label class="form-check-label">
+                <input
+                  type="checkbox"
+                  class="form-check-input compare-checkbox"
+                />
+                Compare
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <div class="ribbon">Popular</div>
+            <div class="card-header plan-highlight fs-4">Basic Plan</div>
+            <div class="card-body">
+              <h5 class="card-title plan-highlight fs-3">$30/month</h5>
+              <p class="card-text">
+                <span class="tick-mark">&#10003;</span> Data: 5GB
+              </p>
+              <p class="card-text">
+                <span class="tick-mark">&#10003;</span> Call Minutes: Unlimited
+              </p>
+              <p class="card-text">
+                <span class="tick-mark">&#10003;</span> Text Messages: 1000
+              </p>
+              <button class="btn btn-secondary btn-block mt-3">
+                Select Plan
+              </button>
+            </div>
+            <div class="card-footer">
+              <label class="form-check-label">
+                <input
+                  type="checkbox"
+                  class="form-check-input compare-checkbox"
+                />
+                Compare
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <div class="ribbon h">Featured</div>
+            <div class="card-header plan-highlight heading fs-4">
+              Premium Plan
+            </div>
+            <div class="card-body">
+              <h5 class="card-title plan-highlight fs-3">$40/month</h5>
+              <p class="card-text">
+                <span class="tick-mark">&#10003;</span> Data: 10GB
+              </p>
+              <p class="card-text">
+                <span class="tick-mark">&#10003;</span> Call Minutes: Unlimited
+              </p>
+              <p class="card-text">
+                <span class="tick-mark">&#10003;</span> Text Messages: 2000
+              </p>
+              <button class="btn btn-warning btn-block mt-3">
+                Select Plan
+              </button>
+            </div>
+            <div class="card-footer">
+              <label class="form-check-label">
+                <input
+                  type="checkbox"
+                  class="form-check-input compare-checkbox"
+                />
+                Compare
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <div class="ribbon">Recommended</div>
+            <div class="card-header plan-highlight fs-4">Enterprise Plan</div>
+            <div class="card-body fs-3">
+              <h5 class="card-title plan-highlight">$50/month</h5>
+              <p class="card-text">
+                <span class="tick-mark">&#10003;</span> Data: 15GB
+              </p>
+              <p class="card-text">
+                <span class="tick-mark">&#10003;</span> Call Minutes: Unlimited
+              </p>
+              <p class="card-text">
+                <span class="tick-mark">&#10003;</span> Text Messages: Unlimited
+              </p>
+              <button class="btn btn-info btn-block mt-3">Select Plan</button>
+            </div>
+            <div class="card-footer">
+              <label class="form-check-label">
+                <input
+                  type="checkbox"
+                  class="form-check-input compare-checkbox"
+                />
+                Compare
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <div class="ribbon">Popular</div>
+            <div class="card-header plan-highlight fs-4">Basic Plan</div>
+            <div class="card-body">
+              <h5 class="card-title plan-highlight fs-3">$30/month</h5>
+              <p class="card-text">
+                <span class="tick-mark">&#10003;</span> Data: 5GB
+              </p>
+              <p class="card-text">
+                <span class="tick-mark">&#10003;</span> Call Minutes: Unlimited
+              </p>
+              <p class="card-text">
+                <span class="tick-mark">&#10003;</span> Text Messages: 1000
+              </p>
+              <button class="btn btn-secondary btn-block mt-3">
+                Select Plan
+              </button>
+            </div>
+            <div class="card-footer">
+              <label class="form-check-label">
+                <input
+                  type="checkbox"
+                  class="form-check-input compare-checkbox"
+                />
+                Compare
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <div class="ribbon h">Featured</div>
+            <div class="card-header plan-highlight heading fs-4">
+              Premium Plan
+            </div>
+            <div class="card-body">
+              <h5 class="card-title plan-highlight fs-3">$40/month</h5>
+              <p class="card-text">
+                <span class="tick-mark">&#10003;</span> Data: 10GB
+              </p>
+              <p class="card-text">
+                <span class="tick-mark">&#10003;</span> Call Minutes: Unlimited
+              </p>
+              <p class="card-text">
+                <span class="tick-mark">&#10003;</span> Text Messages: 2000
+              </p>
+              <button class="btn btn-warning btn-block mt-3">
+                Select Plan
+              </button>
+            </div>
+            <div class="card-footer">
+              <label class="form-check-label">
+                <input
+                  type="checkbox"
+                  class="form-check-input compare-checkbox"
+                />
+                Compare
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <div class="ribbon">Recommended</div>
+            <div class="card-header plan-highlight fs-4">Enterprise Plan</div>
+            <div class="card-body fs-3">
+              <h5 class="card-title plan-highlight">$50/month</h5>
+              <p class="card-text">
+                <span class="tick-mark">&#10003;</span> Data: 15GB
+              </p>
+              <p class="card-text">
+                <span class="tick-mark">&#10003;</span> Call Minutes: Unlimited
+              </p>
+              <p class="card-text">
+                <span class="tick-mark">&#10003;</span> Text Messages: Unlimited
+              </p>
+              <button class="btn btn-info btn-block mt-3">Select Plan</button>
+            </div>
+            <div class="card-footer">
+              <label class="form-check-label">
+                <input
+                  type="checkbox"
+                  class="form-check-input compare-checkbox"
+                />
+                Compare
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container mt-4">
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <button id="compareButton" class="btn btn-lg" disabled>
+              Compare Selected Plans
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <hr class="m-lg-5" />
+
+      <div
+        class="container mt-4 m-5"
+        id="comparisonSection"
+        style="display: none"
+      >
+        <h2 class="text-center m-5">Comparison</h2>
+        <div class="row">
+          <div class="col-md-4" id="plan1"></div>
+          <div class="col-md-4" id="plan2"></div>
+          <div class="col-md-4" id="plan3"></div>
+        </div>
+      </div>
+    </div>
+    <section class="section" id="features">
+      <div class="container">
+        <h2>Why Choose Us?</h2>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="feature">
+              <img
+                src="https://www.slideteam.net/media/catalog/product/cache/330x186/p/r/pricing_structure_powerpoint_ppt_template_bundles_slide01.jpg"
+                alt="reliablity"
+                class="feature-icon w-25 h-25"
+              />
+              <i class="feature-icon fas fa-mobile-alt"></i>
+              <span class="feature-text">Wide Range of Plans</span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="feature">
+              <img
+                src="https://cdn3.iconfinder.com/data/icons/cleaning-kinetic-vol-1/256/Affordable_Pricing-512.png"
+                alt="reliablity"
+                class="feature-icon w-25 h-25"
+              />
+              <i class="feature-icon fas fa-wallet"></i>
+              <span class="feature-text">Affordable Pricing</span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="feature">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/4371/4371287.png"
+                alt="reliablity"
+                class="feature-icon w-25 h-25"
+              />
+              <i class="feature-icon fas fa-thumbs-up"></i>
+              <span class="feature-text">Reliable Service</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" id="contact">
+      <div class="container">
+        <h2>Ready to Find Your Perfect Plan?</h2>
+        <a href="#" class="btn btn-primary btn-lg">Get Started</a>
+      </div>
+    </section>
+
+    <footer class="text-center py-4">
+      <p>&copy; 2023 Telecom Comparison. All rights reserved.</p>
+    </footer>
+
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      const compareButton = document.getElementById("compareButton")
+      const comparisonSection = document.getElementById("comparisonSection")
+      const compareCheckboxes = document.querySelectorAll(".compare-checkbox")
+      const plan1 = document.getElementById("plan1")
+      const plan2 = document.getElementById("plan2")
+      const plan3 = document.getElementById("plan3")
+
+      compareCheckboxes.forEach((checkbox) => {
+        checkbox.addEventListener("change", () => {
+          updateComparison()
+        })
+      })
+
+      compareButton.addEventListener("click", () => {
+        comparisonSection.style.display = "block"
+        window.scrollTo({
+          top: comparisonSection.offsetTop - 20,
+          behavior: "smooth",
+        })
+      })
+
+      function updateComparison() {
+        const selectedPlans = Array.from(compareCheckboxes)
+          .filter((checkbox) => checkbox.checked)
+          .map((checkbox) => checkbox.closest(".card"))
+
+        if (selectedPlans.length >= 2) {
+          compareButton.disabled = false
+        } else {
+          compareButton.disabled = true
+        }
+
+        if (selectedPlans.length >= 1) {
+          plan1.innerHTML = selectedPlans[0].outerHTML
+          plan1.classList.add("selected")
+        } else {
+          plan1.innerHTML = ""
+          plan1.classList.remove("selected")
+        }
+
+        if (selectedPlans.length >= 2) {
+          plan2.innerHTML = selectedPlans[1].outerHTML
+          plan2.classList.add("selected")
+        } else {
+          plan2.innerHTML = ""
+          plan2.classList.remove("selected")
+        }
+
+        if (selectedPlans.length >= 3) {
+          plan3.innerHTML = selectedPlans[2].outerHTML
+          plan3.classList.add("selected")
+        } else {
+          plan3.innerHTML = ""
+          plan3.classList.remove("selected")
+        }
+      }
+    </script>
+  </body>
+</html>
